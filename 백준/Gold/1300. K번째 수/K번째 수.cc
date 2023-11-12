@@ -10,7 +10,7 @@ long n, k; // n*n 2차원 배열 A, 1차원 배열 B에서 k번째 수
 
 // 메모리 사용량과 연산 시간을 줄이기 위해 배열을 생성하지 않고 이진탐색 활용
 // 문제 접근법: B[k] = mid 일 때, mid 보다 작거나 같은 원소의 개수가 최소 k개
-// 해결 규칙: 각 단 별, mid 값보다 작건나 같은 원소의 개수는 (mid / (단)) -> 이들의 합
+// 해결 규칙: 각 단 별, mid 값보다 작거나 같은 원소의 개수는 (mid / (단)) -> 이들의 합
 int binary_search(long n, long k) {
 	long mid = 0, left = 1, right = k; // 배열 B의 인덱스는 1부터 시작
 	while (left < right) {
