@@ -29,7 +29,7 @@ int binary_search(long n, long k) {
 		else left = mid + 1;
 	}
 	return left; // sum의 값이 k와 동일할 때, 그 때의 B[k] 값 반환
-	// 이때, left는 mid보다 작거나 같은 수의 개수가 k개 이상인 수 중 "가장 작은 수"
+	// 이때, left는 mid보다 작거나 같은 수의 개수가 k개 이상인 수 중 "가장 작은 수", lower bound
 }
 
 int main(void) {
