@@ -46,6 +46,9 @@ void check_umbrella() {
 			// for문의 break는 Umbrella 벡터의 모든 요소에 대한 순회가 끝났음을 의미
 		}
 	} while (next_permutation(Umbrella.begin(), Umbrella.end()));
+	// 다음 순열이 없으면 false 반환 후 do-while문 종료
+	// Umbrella.begin() - 첫 번째 원소를 가리키는 반복자(iterator) 반환
+  	// Umbrella.end() - 마지막 원소를 가리키는 반복자(iterator) 반환
 }
 
 int main(void) {
