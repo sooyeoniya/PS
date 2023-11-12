@@ -29,7 +29,7 @@ int binary_search(int x) { // 이진 탐색 활용, 반환값은 캐릭터 전�
 
 int main(void) {
 	// C++ 에서는 C의 표준 입출력을 혼용하는 것을 허용
-  // C의 표준 입출력의 동기화를 꺼줌으로써 속도 최적화
+  	// C의 표준 입출력의 동기화를 꺼줌으로써 속도 최적화
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
