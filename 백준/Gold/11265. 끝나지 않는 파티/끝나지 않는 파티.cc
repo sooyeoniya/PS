@@ -1,7 +1,7 @@
 /**
 * 풀이 시간: 30:46
-* 시간 복잡도: O(N+M+N^3) = O(N^3)
-* 공간 복잡도: O(N^2)
+* 시간 복잡도: O(N^2+M+N^3) = O(N^3) // floyd_warshall()의 O(N^3)
+* 공간 복잡도: O(N^2) // party_hall의 공간 복잡도
 * 참고 자료: https://chanhuiseok.github.io/posts/algo-50/
 */
 #include <iostream>
