@@ -1,9 +1,3 @@
-/**
-* 풀이 시간: 
-* 시간 복잡도: 
-* 공간 복잡도: 
-* 참고 자료: 
-*/
 #include <iostream>
 #include <vector>
 #include <queue>
