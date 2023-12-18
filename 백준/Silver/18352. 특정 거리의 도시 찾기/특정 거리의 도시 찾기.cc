@@ -1,3 +1,14 @@
+/**
+* 풀이 시간: 01:38:37
+* 시간 복잡도: O(M+N^2+N) = O(N^2) // 단방향 경로 추가 O(M) + 
+                                  // while문은 큐가 비어있을 때까지 반복하므로, 최악의 경우 모든 도시를 방문 O(N) * 
+				  // for문은 현재 도시와 연결된 도시 확인, 최악의 경우 한 도시에 모든 도시가 연결 O(N) + 
+       				  // result 값 출력, 최대 N이므로 O(N)
+* 공간 복잡도: O(M+N+N) = max(O(M), O(N)) // one_way_route 크기 O(M) + 
+					  // result의 최대 크기는 N이므로 O(N) + 
+					  // shortest_route 크기 O(N)
+* 참고 자료: https://kimjingo.tistory.com/57
+*/
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -19,10 +30,10 @@ void bfs() {
 		queue.pop(); // 맨 앞 원소 제거
 
 		for (int i = 0; i < one_way_route[cur].size(); i++) {
-			int next = one_way_route[cur][i]; // 현재 도시와 연결된 도시
+			int next = one_way_route[cur][i]; // 현재 도시와 연결된 도시 탐색
 			if (shortest_route[next] == -1) { // 해당 도시가 탐색 전일 경우(-1)
-				shortest_route[next] = shortest_route[cur] + 1; // 거리값: 현재 도시의 + 1
-				queue.push(next); // 해당 도시 큐에 삽입 후 재탐색
+				shortest_route[next] = shortest_route[cur] + 1; // 거리값: 현재 도시의 + 1 (모든 도로의 거리는 1)
+				queue.push(next); // 해당 도시를 큐에 삽입 후 재탐색
 			}
 		}
 	}
@@ -51,8 +62,10 @@ int main(void) {
 
 	bfs();
 	
+	// 최단 거리가 K인 모든 도시의 번호를 한 줄에 하나씩 오름차순으로 출력
 	if(result.size() != 0)
 		for (int i = 0; i < result.size(); i++)
 			cout << result[i] << endl;
+	// 최단 거리가 K인 도시가 하나도 존재하지 않으면 -1을 출력
 	else cout << -1 << endl;
 }
