@@ -1,3 +1,12 @@
+/**
+* 풀이 시간: 1:32:14
+* 시간 복잡도: O(N^2)
+* 공간 복잡도: O(N^2)
+* 참고 자료: https://blog.naver.com/PostView.naver?blogId=gustn3964&logNo=222330297504
+* [오류 원인]
+* 런타임 에러(OutOfBounds): findShortestNode 함수가 -1을 반환한 경우에 대한 예외 처리
+* 해결 방안: if (newNode == -1) break;
+*/
 #include <iostream>
 #include <vector>
 #include <cmath>
