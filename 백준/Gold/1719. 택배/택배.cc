@@ -1,3 +1,10 @@
+/**
+* 풀이 시간: 43분
+* 시간 복잡도: O(n^3)
+* 공간 복잡도: O(n^2)
+* 참고 자료: https://ongveloper.tistory.com/181
+* [오류 원인]: 동일한 집하장일 때 예외처리가 제대로 되지 않았음
+*/
 #include <iostream>
 #include <vector>
 using namespace std;
