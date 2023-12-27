@@ -3,7 +3,7 @@
 * 시간 복잡도: O(n^3)
 * 공간 복잡도: O(n^2)
 * 참고 자료: https://velog.io/@yoohoo030/%EB%B0%B1%EC%A4%8011562-%EB%B0%B1%EC%96%91%EB%A1%9C-%EB%B8%8C%EB%A0%88%EC%9D%B4%ED%81%AC
-* [오류 원인]: 시간초과
+* [오류 원인]: 시간초과 - endl 을 ‘\n’로 바꿔주었더니 됨
 */
 #include <iostream>
 #include <vector>
