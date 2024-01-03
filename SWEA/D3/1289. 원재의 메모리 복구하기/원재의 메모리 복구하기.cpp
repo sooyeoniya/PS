@@ -5,24 +5,25 @@
 #include <string>
 using namespace std;
 
-int main(void)
-{
+int main(void) {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
     cout.tie(0);
     int T;
     cin >> T;
     for (int i = 1; i <= T; i++) {
-        string str;
-        int cnt = 0, flag = 0;
+        string str; // 문자열을 string으로 저장
+        int cnt = 0, flag = 0; // 개수 저장할 cnt 값, 현재 0인지 1인지 구분하는 flag 값
         cin >> str;
         for (int j = 0; j < str.length(); j++) {
-            if (j == 0) {
+            if (j == 0) { // 첫 번째 문자열 값 처리
+                // 1일 경우 flag를 1로 바꾸고 cnt 값을 1 증가, 0일 경우 아무 것도 하지 않음(초깃값이 모든 bit가 0 이므로)
                 if (str[j] == '1') { flag = 1; cnt++; }
                 else continue;
-            }
-            else {
+            } else { // 첫 번째 문자열 외의 값 처리
+                // flag가 0(이전 값이 0), 현재 문자열이 1일 경우, flag와 cnt 값 변경
                 if (flag == 0 & str[j] == '1') { flag = 1; cnt++; }
+                // flag가 1(이전 값이 1), 현재 문자열이 0일 경우, flag와 cnt 값 변경
                 if (flag == 1 & str[j] == '0') { flag = 0; cnt++; }
             }
         }
