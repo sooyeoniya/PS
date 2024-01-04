@@ -8,14 +8,14 @@
 #include <string>
 #include <algorithm>
 using namespace std;
-
+ 
 string str; // 입력된 숫자를 string으로 저장
 int result, num; // 결괏값, 교환 횟수
-
+ 
 void dfs(int n, int curNum) {
     // 교환 횟수가 모두 다 끝났을 경우, 가장 큰 값 저장. stoi(str): string -> int
     if (num == curNum) { result = max(result, stoi(str)); return; }
-
+ 
     // 시작 시 n(i)번째부터 시작하여, 재귀함수 호출 시 시간 단축
     for (int i = n; i < str.size() - 1; i++) {
         for (int j = i + 1; j < str.size(); j++) {
@@ -25,7 +25,7 @@ void dfs(int n, int curNum) {
         }
     }
 }
-
+ 
 int main(void) {
     ios_base::sync_with_stdio(false);
     cin.tie(0); cout.tie(0);
@@ -33,8 +33,7 @@ int main(void) {
     for (int i = 1; i <= C; i++) {
         result = 0;
         cin >> str >> num;
-
-
+ 
         /*
         만약 교환 횟수가 문자열 크기보다 크다면 
         문자열 길이를 넘어가는 교환은 기존 숫자와 동일한 숫자를 얻을 뿐이고
@@ -42,7 +41,7 @@ int main(void) {
         따라서, 교환 횟수를 문자열 크기 값으로 설정
         */
         if (num > str.size()) num = str.size();
-
+ 
         dfs(0, 0);
         cout << "#" << i << " " << result << "\n";
     }
