@@ -64,7 +64,7 @@ int bfs() {
 	return recoveryTime[N - 1][N - 1];
 }
 
-int main(int argc, char** argv) {
+int main(void) {
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL); cout.tie(NULL);
 	int C;
@@ -86,5 +86,4 @@ int main(int argc, char** argv) {
 
 		cout << "#" << i << " " << bfs() << "\n";
 	}
-	return 0;
 }
