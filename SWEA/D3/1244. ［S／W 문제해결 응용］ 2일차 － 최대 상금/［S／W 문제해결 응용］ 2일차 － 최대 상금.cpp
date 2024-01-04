@@ -2,6 +2,7 @@
 * 풀이 시간: 1h06m20s
 * 시간 복잡도: O(N^2 * M) -> N: 문자열 길이, M: 교환 횟수
 * 공간 복잡도: O(1) -> 상수 값에 의존
+* 참고 자료: https://eunchanee.tistory.com/149
 * 오류 원인: result 값을 따로 출력하지 않고 그냥 max(result, stoi(str)) 부분을 그대로 리턴해 출력하려고 함
 */
 #include <iostream>
