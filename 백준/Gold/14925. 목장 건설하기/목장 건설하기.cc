@@ -1,6 +1,6 @@
 // 풀이 시간: 1h50m22s84 + 1h22m56s53
-// 시간 복잡도: 
-// 공간 복잡도: 
+// 시간 복잡도: O(M * N * L^2)
+// 공간 복잡도: O(M * N)
 // 참고 자료: https://howudong.tistory.com/212
 #include <iostream>
 #include <algorithm>
@@ -11,7 +11,7 @@ using namespace std;
 int M, N, L = 0;
 vector<vector<int>> arr;
 vector<vector<bool>> visited;
-int dir[3][2] = {{0, 1}, {1, 0}, {1, 1}};
+int dir[3][2] = {{0, 1}, {1, 0}, {1, 1}}; // 탐색할 좌표들
 
 void bfs(int i, int j) {
    /* 현재 좌표 (i, j)에서 (L + 1) 만큼을 더해준 값이 
@@ -26,13 +26,13 @@ void bfs(int i, int j) {
          if (arr[k][l] == 1 || arr[k][l] == 2) return;
 
    // 현재 좌표 (i, j)부터 정사각형 측정 시작
-   int temp = 1;
+   int temp = 1; // temp가 1부터 시작하는 이유는 현재 좌표가 0이기 때문에 1x1 정사각형을 만족함
    queue<pair<int, int>> q;
-   visited = vector<vector<bool>>(M + 1, vector<bool>(N + 1, false));
+   visited = vector<vector<bool>>(M + 1, vector<bool>(N + 1, false)); // why here?;; IDK
    q.push({i, j});
    visited[i][j] = true;
 
-   while(!q.empty()) {
+   while(!q.empty()) { 
       // 정사각형 크기만큼 돌리기
       int size = q.size();
       while(size--) {
@@ -58,9 +58,13 @@ void bfs(int i, int j) {
             }
          }
       }
-      temp++;
+      temp++; 
+      /* 
+      정사각형 크기만큼을 다 돌렸을 때 중간에 return 되지 않고 통과하면 한 변의 길이를 + 1
+      다음 큐를 돌면서 더 큰 크기의 정사각형을 만족하는지 검사
+      */
    }
-   L = max(L, temp);
+   L = max(L, temp); // 더 큰 값을 L에 저장
    return;
 }
 
