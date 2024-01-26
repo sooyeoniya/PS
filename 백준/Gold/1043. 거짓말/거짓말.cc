@@ -34,6 +34,20 @@ void check() {
    }
 }
 
+void updateAns() {
+   // 모든 파티를 순회하며 현재 파티의 파티원 중 한명이라도 truth 값이 true면 break; 그 외에는 ans++
+   for (int i = 1; i <= M; ++i) {
+      bool truthInParty = false; 
+      for (int j = 1; j <= 50; ++j) {
+         if (attendParty[i][j] && truth[j]) { 
+            truthInParty = true; 
+            break; 
+         }
+      }
+      if (!truthInParty) ans++;
+   }
+}
+
 int main() {
    ios_base::sync_with_stdio(false);
    cin.tie(0); cout.tie(0);
@@ -55,18 +69,7 @@ int main() {
    }
 
    check();
-
-   // 모든 파티를 순회하며 현재 파티의 파티원 중 한명이라도 truth 값이 true면 break; 그 외에는 ans++
-   for (int i = 1; i <= M; ++i) {
-      bool truthInParty = false; 
-      for (int j = 1; j <= 50; ++j) {
-         if (attendParty[i][j] && truth[j]) { 
-            truthInParty = true; 
-            break; 
-         }
-      }
-      if (!truthInParty) ans++;
-   }
+   updateAns();
    cout << ans << "\n";
    return 0;
 }
