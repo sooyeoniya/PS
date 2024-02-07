@@ -21,6 +21,7 @@ struct Trie {
          for (int i = 0; i < depth; ++i) cout << "--";
          cout << ch.first << "\n";
          ch.second -> dfs(depth + 1);
+         delete ch.second; // 메모리 해제
       }
    }
 };
@@ -28,7 +29,7 @@ struct Trie {
 int main() {
    ios_base::sync_with_stdio(false);
    cin.tie(0); cout.tie(0);
-   Trie* root = new Trie;
+   Trie* root = new Trie; // 루트 노드 생성
    int N; cin >> N;
    for (int i = 0; i < N; ++i) {
       int K; cin >> K; 
@@ -37,6 +38,6 @@ int main() {
       root -> insert(food, 0); 
    }
    root -> dfs(0);
-   delete root; // root 포인터가 가리키는 Trie 객체 소멸자 호출 및 메모리 해제
+   delete root; // 메모리 해제
    return 0;
 }
