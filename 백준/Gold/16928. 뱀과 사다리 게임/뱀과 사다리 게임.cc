@@ -21,9 +21,10 @@ void bfs(int pos, int cnt) {
 
       for (int i = 1; i <= 6; ++i) {
          int next = pos + i;
+         if (arr[next] != 0) next = arr[next];
+
          if (next <= 100 && !visited[next]) {
             visited[next] = true;
-            if (arr[next] != 0) next = arr[next];
             q.push({next, cnt + 1});
          }
       }
