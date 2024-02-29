@@ -14,8 +14,12 @@ class Edge {
          this->cost = cost;
       }
 
-      // 오름차순 정렬 시 cost(유지비)를 기준으로 정렬
-      // bool operator<(Edge &edge) { return this->cost < edge.cost; }
+      /* 
+      sort 함수를 사용하여 Edge 인스턴스의 벡터를 정렬할 때, < 연산자가 사용됨
+      오름차순 정렬 시 cost(유지비)를 기준으로 정렬
+      < 연산자에 대한 사용자 재정의
+      cost가 작은 Edge가 cost가 큰 Edge보다 앞에 오도록 설정
+      */
       bool operator<(const Edge &edge) const { return this->cost < edge.cost; }
 };
 
