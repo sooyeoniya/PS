@@ -7,7 +7,7 @@ string init, final, temp;
 
 void solve(int first) {
    temp = init; // 다음 탐색 과정에서 기존 초기 값인 init 자체에 영향을 주지 않기 위해
-   cnt = 0;
+   cnt = 0; // 매번 초기화
    if (first == 0) { // 첫 번째 값을 변경할 경우
       temp[0] = temp[0] == '0' ? '1' : '0';
       temp[1] = temp[1] == '0' ? '1' : '0';
