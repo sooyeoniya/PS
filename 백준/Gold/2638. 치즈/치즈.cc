@@ -4,10 +4,9 @@
 #include <algorithm>
 using namespace std;
 int N, M, ans = 0;
-vector<vector<int>> arr;
-vector<vector<int>> cnt;
+vector<vector<int>> arr, cnt;
 vector<vector<bool>> visited;
-int dir[4][2] = {{0, -1}, {0, 1}, {1, 0}, {-1, 0}};
+int dir[4][2] = {{0, -1}, {0, 1}, {1, 0}, {-1, 0}}; // 4방향
 
 void bfs() {
    queue<pair<int, int>> q;
@@ -25,9 +24,9 @@ void bfs() {
 
          if (nextX < 0 || nextY < 0 || nextX >= N || nextY >= M || visited[nextX][nextY]) continue;
 
-         if (arr[nextX][nextY] == 1) cnt[nextX][nextY]++;
+         if (arr[nextX][nextY] == 1) cnt[nextX][nextY]++; // 1일 경우 치즈이므로 cnt++
 
-         if (arr[nextX][nextY] == 0) {
+         if (arr[nextX][nextY] == 0) { // 0일 경우 큐에 넣고 해당 위치 탐색
             q.push({nextX, nextY});
             visited[nextX][nextY] = true;
          }
@@ -45,6 +44,7 @@ int main() {
          cin >> arr[i][j];
    
    while (1) {
+      // 현재 남아있는 치즈가 있는지 확인
       bool isCheese = false;
       for (int i = 0; i < N; ++i) {
          for (int j = 0; j < M; ++j) {
@@ -53,15 +53,15 @@ int main() {
          }
       }
       if (!isCheese) break;
-      cnt = vector<vector<int>>(N, vector<int>(M, 0));
+      cnt = vector<vector<int>>(N, vector<int>(M, 0)); 
       visited = vector<vector<bool>>(N, vector<bool>(M, false));
       bfs();
       for (int i = 0; i < N; ++i) {
          for (int j = 0; j < M; ++j) {
-            if (cnt[i][j] >= 2) arr[i][j] = 0;
+            if (cnt[i][j] >= 2) arr[i][j] = 0; // 2면 이상 공기와 접촉해있을 경우 치즈 녹임
          }
       }
-      ans++;
+      ans++; // 1시간 추가
    }
    cout << ans;
    return 0;
