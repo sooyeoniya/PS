@@ -13,6 +13,12 @@ map<int, pair<int, int>> dir = {
 }; // 방향: 0, 1, 2, 3
 vector<pair<int, int>> save; // 지나온 좌표 저장 값
 
+/* 0<= curX <= 100, 0 <= curY <= 100 일 때만 arr을 true로 변경 */
+void constraint(int curX, int curY) {
+   if (curX >= 0 && curX <= 100 && curY >= 0 && curY <= 100)
+      arr[curX][curY] = true;
+}
+
 int reverse(int d) { // 반대 방향의 -1 한 값을 반환
    if (d == 0) return (2 - 1);
    if (d == 1) return (3 - 1);
@@ -45,9 +51,7 @@ void dragon() {
          int curY = y + dir.find(d)->second.second;
          save.push_back(make_pair(curX, curY));
 
-         /* 0<= curX <= 100, 0 <= curY <= 100 일 때만 arr을 true로 변경 */
-         if (curX >= 0 && curX <= 100 && curY >= 0 && curY <= 100)
-            arr[curX][curY] = true;
+         constraint(curX, curY);
 
          /* 시작 방향(d)를 이용해 다음 방향을 direct에 삽입 */
          direct.push_front(reverse(d));
@@ -62,9 +66,7 @@ void dragon() {
             int curY = y + dir.find(dirValue)->second.second;
             save.push_back(make_pair(curX, curY));
 
-            /* 0<= curX <= 100, 0 <= curY <= 100 일 때만 arr을 true로 변경 */
-            if (curX >= 0 && curX <= 100 && curY >= 0 && curY <= 100)
-               arr[curX][curY] = true;
+            constraint(curX, curY);
          }
 
          /* direct를 앞에서부터 탐색하면서 reverse() 함수로 다음 방향들을 앞에서부터 차례대로 저장 후, 
