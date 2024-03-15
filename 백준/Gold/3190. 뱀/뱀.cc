@@ -25,10 +25,11 @@ void dummy() {
       snake.push_front(make_pair(nextX, nextY)); // 다음 위치에 뱀 머리 추가
       arr[nextX][nextY] = 2;
 
+      /* 방향 전환 */
       if (!trans.empty() && trans.front().first == t) {
-         d = (d + trans.front().second) % 4;
+         d = (d + trans.front().second) % 4; // 4가 넘어갈 경우 조정
          if (d < 0) d += 4; // 음수일 경우 조정
-         trans.pop_front();
+         trans.pop_front(); // 맨 앞의 값 삭제
       }
    }
    cout << t;
@@ -41,7 +42,7 @@ int main() {
    arr = vector<vector<int>>(N, vector<int>(N, 0));
    for (int i = 0; i < K; ++i) {
       int x, y; cin >> x >> y;
-      arr[x - 1][y - 1] = 1;
+      arr[x - 1][y - 1] = 1; // 좌표는 0부터 시작하므로 각각 -1
    }
    cin >> L;
    for (int i = 0; i < L; ++i) {
@@ -50,5 +51,5 @@ int main() {
       if (c == 'L') trans.push_back(make_pair(x, -1));
    }
    dummy();
-	return 0;
+   return 0;
 }
