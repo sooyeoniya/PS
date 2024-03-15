@@ -3,19 +3,20 @@
 #include <deque>
 using namespace std;
 int N, K, L, X, C;
-int dir[4][2] = {{0, -1}, {1, 0}, {0, 1}, {-1, 0}}; // 상,우,하,좌 {열(y), 행(x)}
+int dir[4][2] = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}}; // 상,우,하,좌 {행(x), 열(y)}
 vector<vector<int>> arr; // 0: 빈공간, 1: 사과, 2: 뱀
 deque<pair<int, int>> trans;
 
 void dummy() {
-   int curX = 0, curY = 0, nextX = 0, nextY = 0, d = 1, t = 0;
+   int d = 1, t = 0;
    arr[0][0] = 2;
    deque<pair<int, int>> snake;
    snake.push_back(make_pair(0, 0)); // 시작 위치
    while (1) {
       t++;
-      curX = snake.front().first; curY = snake.front().second; // 현재 위치를 뱀의 머리
-      nextX = curX + dir[d][1]; nextY = curY + dir[d][0];
+      /* 다음 위치 = 현재 뱀의 머리 + 방향 이동 */
+      int nextX = snake.front().first + dir[d][0]; 
+      int nextY = snake.front().second + dir[d][1];
       if (nextX < 0 || nextX >= N || nextY < 0 || nextY >= N || arr[nextX][nextY] == 2) break;
       if (arr[nextX][nextY] == 0) { // 사과가 없을 경우 뱀 꼬리 하나 제거
          arr[snake.back().first][snake.back().second] = 0;
