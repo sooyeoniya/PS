@@ -16,9 +16,8 @@ void cleanRoom(int r, int c) {
 			isEmpty = true;
 	if (!isEmpty) { // 주변 4칸 중 청소되지 않은 빈 칸이 없는 경우
 		// 바라보는 방향의 뒤쪽 칸으로 후진 가능한 경우
-		if (arr[r + dir[(d + 2) % 4][0]][c + dir[(d + 2) % 4][1]] != 1) {
+		if (arr[r + dir[(d + 2) % 4][0]][c + dir[(d + 2) % 4][1]] != 1)
 			cleanRoom(r + dir[(d + 2) % 4][0], c + dir[(d + 2) % 4][1]);
-		}
 		else return; // 뒤쪽 칸이 벽이라 후진이 불가능한 경우 작동 멈춤
 	}
 	else { // 주변 4칸 중 청소되지 않은 빈 칸이 있는 경우
