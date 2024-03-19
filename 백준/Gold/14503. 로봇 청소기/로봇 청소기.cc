@@ -1,7 +1,4 @@
 #include <iostream>
-#include <cstring>
-#include <algorithm>
-#include <queue>
 using namespace std;
 int N, M, r, c, d, cnt = 0;
 int arr[51][51] = { 0, };
