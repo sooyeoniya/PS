@@ -34,11 +34,11 @@ bool babyShark() {
 		// 물고기 크기가 아기 상어 크기보다 작으면 먹음
 		if (arr[cX][cY] != 0 && sharkSize > arr[cX][cY]) {
 			arr[cX][cY] = 0; // 현재 위치를 빈칸으로 변경 (물고기를 먹는다는 의미!)
-			cnt += cM; // 아기 상어의 총 이동거리 갱신
+			cnt += cM; // 아기 상어의 총 이동 거리 갱신
 			pos = make_pair(cX, cY); // 현재 좌표로 아기 상어 위치 갱신
-			fishNum++; // 먹은 물고기 수 갱신
+			fishNum++; // 먹은 물고기 개수 갱신
 			if (fishNum == sharkSize) {
-				fishNum = 0; // 생선 개수 초기화 **** 중요!! ****
+				fishNum = 0; // 먹은 물고기 개수 초기화 **** 중요!! ****
 				sharkSize++; // 상어 크기 갱신
 			}
 			memset(visited, false, sizeof(visited)); // 방문 위치 매번 초기화
