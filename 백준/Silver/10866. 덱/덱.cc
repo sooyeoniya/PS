@@ -1,3 +1,6 @@
+// 풀이 시간: 35m24s50
+// 시간 복잡도: O(N)
+// 공간 복잡도: O(N)
 #include <iostream>
 #include <deque>
 #include <string>
