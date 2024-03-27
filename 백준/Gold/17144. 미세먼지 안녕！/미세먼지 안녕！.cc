@@ -54,7 +54,7 @@ void diff() {
 
 int main() {
     ios_base::sync_with_stdio(false);
-    cin.tie(nullptr); cout.tie(0);
+    cin.tie(0); cout.tie(0);
     cin >> R >> C >> T;
     for (int i = 0; i < R; ++i) {
         for (int j = 0; j < C; ++j) {
