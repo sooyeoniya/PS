@@ -1,9 +1,3 @@
-// 풀이 시간: 2h19m12s02
-// 시간 복잡도: O(N^2)
-// 공간 복잡도: O(N^2)
-// 참고 코드
-// https://hyeo-noo.tistory.com/137
-// https://yabmoons.tistory.com/592
 #include <iostream>
 #include <string>
 #define MAX 2501
@@ -15,7 +9,6 @@ bool dp[MAX][MAX]; // dp[i][j]: i번째부터 j번째까지가 하나의 팰린�
 
 // start부터 end까지 팰린드롬인지 확인
 bool isPal(int start, int end) {
-    if (end > N) return false;
     // 1. 처음과 끝이 동일하고 
     // 2-1. 처음과 끝을 제외한 나머지 부분의 dp가 true
     // 2-2. 또는 문자열 길이가 2인 경우 true
