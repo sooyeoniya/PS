@@ -1,3 +1,9 @@
+// 풀이 시간: 2h19m12s02
+// 시간 복잡도: O(N^2)
+// 공간 복잡도: O(N^2)
+// 참고 코드
+// https://hyeo-noo.tistory.com/137
+// https://yabmoons.tistory.com/592
 #include <iostream>
 #include <string>
 #define MAX 2501
