@@ -3,8 +3,7 @@
 #include <queue>
 using namespace std;
 int T, n, m, t, s, g, h;
-vector<bool> candidates; // 목적지 후보
-vector<int> dis; // 각 인덱스까지의 최단거리
+vector<int> ans, dis; // 목적지 후보, 각 인덱스까지의 최단거리
 vector<pair<int, int>> graph[2001];
 
 void dijkstra(int start) {
@@ -36,28 +35,43 @@ int main() {
         cin >> n >> m >> t >> s >> g >> h;
         // graph 초기화 (size() 함수 사용을 위한 graph 선언 및 초기화 방법)
         for (int i = 1; i <= n; i++) vector<pair<int, int>>().swap(graph[i]);
-        candidates = vector<bool>(n + 1, false);
+        ans = vector<int>(n + 1, 0);
         dis = vector<int>(n + 1, 1e9); // 최단 경로 비교를 위해 무한대로 초기화
+
+        int first, second, thrid, thridPos; // 각 구간별 최단 경로 값, 3번째 위치
+
         for (int i = 0; i < m; ++i) {
             int a, b, d;
             cin >> a >> b >> d;
             // g, h 경로는 홀수화, 나머지 짝수화
-            if ((a == g && b == h) || (a == h && b == g)) d = d * 2 - 1;
-            else d = d * 2;
+            if ((a == g && b == h) || (a == h && b == g)) second = d; // 두 번째 구간 값
             // 양방향 도로
             graph[a].push_back({d, b});
             graph[b].push_back({d, a});
         }
-        for (int i = 0; i < t; ++i) {
-            int x; cin >> x;
-            candidates[x] = true;
-        }
 
         dijkstra(s);
 
-        for (int i = 1; i <= n; ++i) // 홀수일 때만 출력 (오름차순)
-            if (candidates[i] && dis[i] % 2 == 1)
-                cout << i << " ";
+        if (dis[g] < dis[h]) { // g가 h보다 가깝다면 
+            first = dis[g]; // 첫 번째 구간 값
+            thridPos = h; // 3번째 위치
+        }
+        else {
+            first = dis[h]; // 첫 번째 구간 값
+            thridPos = g; // 3번째 위치
+        }
+
+        for (int i = 0; i < t; ++i) {
+            int x; cin >> x;
+            ans[x] = dis[x]; // 출발점 s에서부터 목적지 후보 x까지의 최단 경로 값 전부 저장
+        }
+
+        dijkstra(thridPos); // 3번째 위치부터 시작하는 최단 경로 값
+
+        for (int i = 1; i <= n; ++i) { // 홀수일 때만 출력 (오름차순)
+            thrid = dis[i]; // 세 번째 구간 값
+            if (ans[i] == first + second + thrid) cout << i << " ";
+        }
         cout << "\n";
     }
     return 0;
