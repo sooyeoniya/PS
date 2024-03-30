@@ -1,7 +1,7 @@
 // 유사 문제: 9370 - 미확인 도착지
-// 풀이 시간: 
-// 시간 복잡도: 
-// 공간 복잡도: 
+// 풀이 시간: 48m18s69
+// 시간 복잡도: O((N + E)logN)
+// 공간 복잡도: O(N + E)
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -65,6 +65,7 @@ int main() {
         t = d[N]; // 세 번째 구간
         ans = min(ans, f + s + t);
     }
+    // ans 값 예외처리 중요 (음수가 나오는 경우 있음)
     if (ans >= 1e9 || ans < 0) cout << -1;
     else cout << ans;
     return 0;
