@@ -1,102 +1,96 @@
-#include<iostream>
-#include<queue>
-#define endl "\n"
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <queue>
 using namespace std;
 
-struct step
-{
-	int Rx, Ry;
-	int Bx, By;
-	int Count;
+int N, M;
+int dir[4][2] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+vector<vector<char>> arr;
+bool visited[11][11][11][11];
+pair<int, int> R, B;
+
+struct State {
+    pair<int, int> red;
+    pair<int, int> blue;
+    int cnt;
 };
 
-char map[11][11];
-bool visit[11][11][11][11];
-int N, M;
-int dx[] = { 1,-1,0,0 };
-int dy[] = { 0,0,1,-1 };
+void bfs() {
+    queue<State> q;
+    q.push({R, B, 0});
+    visited[R.first][R.second][B.first][B.second] = true;
 
-void move(int& rx, int& ry, int& distance, int& i)
-{
-	while (map[rx + dx[i]][ry + dy[i]] != '#' && map[rx][ry] != 'O')
-	{
-		rx += dx[i];
-		ry += dy[i];
-		distance += 1;
-	}
+    while (!q.empty()) {
+        State cur = q.front();
+        int cnt = cur.cnt;
+        q.pop();
+
+        if (cnt >= 10) break;
+
+        for (int i = 0; i < 4; ++i) {
+            pair<int, int> nR = cur.red;
+            pair<int, int> nB = cur.blue;
+
+            int nRx = nR.first, nRy = nR.second; // 빨간 구슬의 다음 위치
+            int nBx = nB.first, nBy = nB.second; // 파란 구슬의 다음 위치
+
+            // 빨간 구슬 이동
+            while (arr[nRx + dir[i][0]][nRy + dir[i][1]] != '#' && arr[nRx][nRy] != 'O') {
+                nRx += dir[i][0]; nRy += dir[i][1];
+            }
+
+            // 파란 구슬 이동
+            while (arr[nBx + dir[i][0]][nBy + dir[i][1]] != '#' && arr[nBx][nBy] != 'O') {
+                nBx += dir[i][0]; nBy += dir[i][1];
+            }
+
+            // 파란 구슬이 구멍에 빠진 경우는 무시
+            if (arr[nBx][nBy] == 'O') continue;
+
+            // 빨간 구슬이 구멍에 빠진 경우 종료
+            if (arr[nRx][nRy] == 'O') {
+                cout << cnt + 1;
+                return;
+            }
+
+            // 빨간 구슬과 파란 구슬이 겹치는 경우 이동거리가 더 긴 구슬을 한 칸 뒤로 이동
+            if (nRx == nBx && nRy == nBy) {
+                if (abs(cur.red.first - nRx) + abs(cur.red.second - nRy) > 
+                    abs(cur.blue.first - nBx) + abs(cur.blue.second - nBy)) {
+                    nRx -= dir[i][0];
+                    nRy -= dir[i][1];
+                } else {
+                    nBx -= dir[i][0];
+                    nBy -= dir[i][1];
+                }
+            }
+
+            // 방문 여부를 확인하여 중복 방문 방지
+            if (!visited[nRx][nRy][nBx][nBy]) {
+                visited[nRx][nRy][nBx][nBy] = true;
+                q.push({{nRx, nRy}, {nBx, nBy}, cnt + 1});
+            }
+        }
+    }
+    // 10번 이하로 움직여서 구슬을 빠뜨릴 수 없는 경우
+    cout << -1;
 }
 
-void BFS(int Rx, int Ry, int Bx, int By)
-{
-	queue<step> q;
-	q.push({ Rx,Ry,Bx,By,0 });
-	visit[Rx][Ry][Rx][Ry] = true;
-	while (!q.empty())
-	{
-		int rx = q.front().Rx;
-		int ry = q.front().Ry;
-		int bx = q.front().Bx;
-		int by = q.front().By;
-		int count = q.front().Count;
-		q.pop();
-
-		if (count >= 10) break;
-
-		for (int i = 0; i < 4; i++)
-		{
-			int nrx = rx, nry = ry, nbx = bx, nby = by;
-			int rc = 0, bc = 0, ncount = count + 1;
-
-			move(nrx, nry, rc, i);
-			move(nbx, nby, bc, i);
-
-			if (map[nbx][nby] == 'O') continue;
-			if (map[nrx][nry] == 'O')
-			{
-				cout << ncount;
-				return;
-			}
-
-			if (nrx == nbx && nry == nby)
-			{
-				if (rc > bc) nrx -= dx[i], nry -= dy[i];
-				else nbx -= dx[i], nby -= dy[i];
-			}
-
-			if (visit[nrx][nry][nbx][nby]) continue;
-			visit[nrx][nry][nbx][nby] = true;
-			q.push({ nrx,nry,nbx,nby,ncount });
-		}
-	}
-	cout << -1;
-}
-
-void Answer()
-{
-	cin >> N >> M;
-	int Rx = 0, Ry = 0, Bx = 0, By = 0;
-	for (int i = 0; i < N; i++)
-	{
-		for (int j = 0; j < M; j++)
-		{
-			cin >> map[i][j];
-			if (map[i][j] == 'R')
-			{
-				Rx = i; Ry = j;
-			}
-			else if (map[i][j] == 'B')
-			{
-				Bx = i; By = j;
-			}
-		}
-	}
-	BFS(Rx, Ry, Bx, By);
-}
-
-int main()
-{
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL); cout.tie(NULL);
-	Answer();
-	return 0;
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(0); cout.tie(0);
+    cin >> N >> M;
+    arr = vector<vector<char>>(N, vector<char>(M));
+    for (int i = 0; i < N; ++i) {
+        string str; cin >> str;
+        for (int j = 0; j < M; ++j) {
+            arr[i][j] = str[j];
+            // R, B 좌표 저장
+            if (str[j] == 'R') R = make_pair(i, j);
+            if (str[j] == 'B') B = make_pair(i, j);
+        }         
+    }
+    bfs();
+    return 0;
 }
