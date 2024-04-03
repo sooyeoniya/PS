@@ -1,6 +1,6 @@
 // 풀이 시간: 56m24s43(문제 분석 및 정리) + 2h26m07s88(코드 작성) + 6m22s38(반례 수정)
-// 시간 복잡도: 
-// 공간 복잡도: 
+// 시간 복잡도: O(N)
+// 공간 복잡도: O(N)
 #include <iostream>
 #include <vector>
 #include <tuple>
