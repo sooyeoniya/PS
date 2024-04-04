@@ -1,6 +1,7 @@
 // 풀이 시간: 57m13s61(고민) + 28m16s94(참고)
 // 시간 복잡도: O(NlogN)
 // 공간 복잡도: O(N^2)
+// 참고 자료: https://youtu.be/WjmEVp-Lgns?si=NaigPbFkZqeipv27
 #include <iostream>
 using namespace std;
 int N;
