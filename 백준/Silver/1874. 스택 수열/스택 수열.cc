@@ -1,6 +1,7 @@
 // 풀이 시간: 48m37s05
 // 시간 복잡도: O(n)
 // 공간 복잡도: O(n)
+// 참고 자료: https://gaeunhan.tistory.com/16
 #include <iostream>
 #include <stack>
 #include <vector>
