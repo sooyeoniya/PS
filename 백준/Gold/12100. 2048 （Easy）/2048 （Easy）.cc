@@ -5,7 +5,6 @@
 using namespace std;
 int N, ans = 0;
 vector<vector<int>> arr;
-int dir[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}}; // 상하좌우
 
 void move(int pos) {
     if (pos == 0) { // 상
