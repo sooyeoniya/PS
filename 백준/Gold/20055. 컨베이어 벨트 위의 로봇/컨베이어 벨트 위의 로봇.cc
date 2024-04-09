@@ -16,7 +16,7 @@ void rotateAll() {
 void rotateRobot() {
     // 가장 먼저 올린 로봇은 down 위치와 가깝기 때문에 down에서부터 up까지 차례대로 진행
     int idx = down;
-    for (int i = 0; i < 2 * N; ++i) {
+    for (int i = 0; i < N; ++i) {
         int next = idx; // 다음 위치
         idx = idx - 1 >= 0 ? idx - 1 : 2 * N - 1; // 현재 위치
         // 현재 위치에 로봇이 있고, 다음 위치에 로봇이 없으며, 다음 위치의 내구도가 1 이상인 경우 로봇 이동
