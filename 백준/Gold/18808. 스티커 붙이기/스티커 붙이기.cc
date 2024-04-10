@@ -51,8 +51,6 @@ int main() {
         for (int r = 0; r < R; ++r)
             for (int c = 0; c < C; ++c)
                 cin >> temp[r][c];
-        // 똑바로 해도, 90도 회전해도 스티커가 노트북보다 클 경우 스티커 버림
-        if ((R > N || C > M) && (R > M || C > N)) continue;
         check = false; // 스티커 부착 여부
         rotate(); // 스티커 회전
     }
