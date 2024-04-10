@@ -20,7 +20,7 @@ void stick() {
                 for (int r = 0; r < R; ++r)
                     for (int c = 0; c < C; ++c)
                         if (temp[r][c] == 1)
-                            arr[r + i][c + j] = temp[r][c];
+                            arr[r + i][c + j] = 1;
                 return;
             }
         }
@@ -29,8 +29,8 @@ void stick() {
 
 void rotate() {
     for (int i = 0; i < 4; ++i) { // 0도, 90도, 180도, 270도
-        if (check) break; // 스티커 붙었을 경우 회전 종료
         stick();
+        if (check) break; // 스티커 붙었을 경우 회전 종료
         int T = R; R = C; C = T; // R <-> C
         int rotated[10][10] = { 0, };
         for (int i = 0; i < R; ++i)
