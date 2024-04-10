@@ -1,9 +1,9 @@
 #include <iostream>
-#include <vector>
 using namespace std;
 int N, M, K, R, C;
 bool check = false;
-vector<vector<int>> arr, temp;
+int arr[40][40] = { 0, };
+int temp[10][10] = { 0, };
 
 void stick() {
     // 전체 위치 순회하여 붙일 수 있는 공간 찾아 붙이기
@@ -32,11 +32,13 @@ void rotate() {
         stick();
         if (check) break; // 스티커 붙었을 경우 회전 종료
         int T = R; R = C; C = T; // R <-> C
-        vector<vector<int>> rotated(R, vector<int>(C));
+        int rotated[10][10] = { 0, };
         for (int i = 0; i < R; ++i)
             for (int j = 0; j < C; ++j)
                 rotated[i][C - j - 1] = temp[j][i];
-        temp = rotated;
+        for (int i = 0; i < R; ++i)
+            for (int j = 0; j < C; ++j)
+                temp[i][j] = rotated[i][j];
     }
 }
 
@@ -44,10 +46,8 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(0); cout.tie(0);
     cin >> N >> M >> K;
-    arr = vector<vector<int>>(N, vector<int>(M, 0));
     for (int i = 0; i < K; ++i) {
         cin >> R >> C;
-        temp = vector<vector<int>>(R, vector<int>(C, 0));
         for (int r = 0; r < R; ++r)
             for (int c = 0; c < C; ++c)
                 cin >> temp[r][c];
