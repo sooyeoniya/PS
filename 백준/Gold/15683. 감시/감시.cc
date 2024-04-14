@@ -15,7 +15,7 @@ void watch(int cctvDir, int curX, int curY) {
     watch(cctvDir, nX, nY);
 }
 
-void dfs(size_t num) {
+void dfs(int num) {
     if (num == cctv.size()) { // cctv 다 돌았을 경우
         int cnt = 0;
         for (int i = 0; i < N; ++i)
