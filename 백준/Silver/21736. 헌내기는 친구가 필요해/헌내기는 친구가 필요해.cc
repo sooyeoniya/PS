@@ -1,3 +1,6 @@
+// 풀이 시간: 8m52s79
+// 시간 복잡도: O(NM)
+// 공간 복잡도: O(NM)
 #include <iostream>
 #include <vector>
 #include <queue>
