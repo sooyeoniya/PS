@@ -1,6 +1,7 @@
 // 풀이 시간: 43m40s
 // 시간 복잡도: O(N)
 // 공간 복잡도: O(N)
+// 참고 자료: https://cryptosalamander.tistory.com/47
 #include <iostream>
 #include <vector>
 #include <algorithm>
