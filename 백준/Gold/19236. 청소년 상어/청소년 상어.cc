@@ -79,7 +79,7 @@ void dfs(int cnt) {
         arr[nX][nY] = nextFishNum;
         shark.x -= dir[tempDir][0] * i;
         shark.y -= dir[tempDir][1] * i;
-        shark.dir = tempFish[nextFishNum].dir; // 수정
+        shark.dir = tempDir; // 수정
     }
 
     ans = max(cnt, ans); // 상어가 먹은 물고기 최댓값 갱신
