@@ -1,4 +1,4 @@
-// MST, Union-Find
+// MST, Kruskal algorithm, Union-Find
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -45,12 +45,11 @@ int main() {
         if (!isCycle(arr[i].second.first, arr[i].second.second)) {
             ans += arr[i].first; // 비용 추가
             unionParent(arr[i].second.first, arr[i].second.second); // 부모 합침
-            if (++cnt == N - 1) {
-                cout << ans;
-                return 0;
-            }
+            cnt++; // 연결된 노드 개수
         }
     }
-    cout << "-1";
+    // 모든 노드가 연결되었는지 확인
+    if (cnt == N - 1) cout << ans;
+    else cout << "-1";
     return 0;
 }
