@@ -11,10 +11,10 @@ int main() {
     for (int i = 2; i <= N; ++i) {
         if (arr[i]) continue;
         for (int j = i; j <= N; j += i)
-            arr[j] = max(arr[j], i);
+            arr[j] = max(arr[j], i); // 자연수 j의 최대 소인수 갱신
     }
     for (int i = 1; i <= N; ++i)
-        if (arr[i] <= K) cnt++;
+        if (arr[i] <= K) cnt++; // K보다 작거나 같은 K-세준수 카운트
     cout << cnt;
     return 0;
 }
