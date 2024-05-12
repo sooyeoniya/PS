@@ -10,7 +10,7 @@ vector<pair<pair<long long, long long>, pair<int, int>>> arr; // 타입 변경
 // 부모노드 찾기
 int getParent(int node) {
     if (node == parent[node]) return node;
-    else return parent[node] = getParent(parent[node]);
+    return parent[node] = getParent(parent[node]); // 수정(시간 초과 원인)
 }
 
 // 부모 합치기
@@ -52,15 +52,12 @@ int main() {
         }
     }
 
-    bool connected = true;
-    int rootParent = getParent(1); // 가희의 부모 노드(1임)
     for (int i = 2; i <= N; ++i) { // 나머지 노드들 탐색하여 가희와 연결되었는지 확인
-        if (getParent(i) != rootParent) {
-            connected = false;
-            break;
+        if (getParent(i) != 1) { // 가희와 연결되지 않은 경우
+            cout << "-1";
+            return 0;
         }
     }
-    if (!connected) cout << "-1"; // 가희와 연결되지 않은 경우
-    else cout << tAns << " " << cAns;
+    cout << tAns << " " << cAns;
     return 0;
 }
