@@ -1,3 +1,4 @@
+// 48m54s11
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -26,6 +27,6 @@ int main() {
         if (sum >= M) r = m - 1; // 현재 시간 m에 대하여 사람 수가 충분히 넘쳐남 (시간 줄여도 됨)
         else l = m + 1; // 현재 시간 m에 대하여 심사 가능한 사람 수가 부족함 (시간이 더 필요)
     }
-    cout << l;
+    cout << l; // l로 최종 값 수렴
     return 0;
 }
