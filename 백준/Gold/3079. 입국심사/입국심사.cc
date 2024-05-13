@@ -3,8 +3,8 @@
 #include <algorithm>
 typedef long long ll; // long long 타입으로 변경
 using namespace std;
-ll N, M, ans = 1e9;
-vector<int> arr; // 얘는 그냥 int
+ll N, M;
+vector<int> arr; // 얘는 그냥 int 
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -23,9 +23,7 @@ int main() {
             sum += m / arr[i];
             if (sum > M) break;
         }
-        if (sum >= M) { // 현재 시간 m에 대하여 사람 수가 충분히 넘쳐남 (시간 줄여도 됨)
-            r = m - 1;
-        }
+        if (sum >= M) r = m - 1; // 현재 시간 m에 대하여 사람 수가 충분히 넘쳐남 (시간 줄여도 됨)
         else l = m + 1; // 현재 시간 m에 대하여 심사 가능한 사람 수가 부족함 (시간이 더 필요)
     }
     cout << l;
