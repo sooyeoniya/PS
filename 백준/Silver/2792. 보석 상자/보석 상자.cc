@@ -10,7 +10,7 @@ int main() {
     cin.tie(0); cout.tie(0);
     cin >> N >> M;
     for (int i = 0; i < M; ++i) cin >> gem[i];
-    sort(gem, gem + M);
+    sort(gem, gem + M); // 정렬 필수로 해주어야 함. -> r 설정 시 맨 마지막 값(가장 큰 값)으로 설정하기 위해, 사실 그냥 위에 for 문에서 가장 큰 값을 따로 저장해서 r에 대입해줘도 됨
 
     int l = 1, r = gem[M - 1], m; // 질투심 값
     while (l <= r) {
