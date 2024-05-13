@@ -2,7 +2,7 @@
 #include <iostream>
 #include <algorithm>
 using namespace std;
-int N, M, ans;
+int N, M;
 int gem[300000] = { 0, };
 
 int main() {
@@ -20,12 +20,9 @@ int main() {
             cnt += gem[i] / m; // 최대 m(질투심 개수)만큼 가져감
             if (gem[i] % m) cnt++; // 보석 나머지가 생기면 한명 더 나누어 주어야 함
         }
-        if (cnt <= N) { // cnt가 N보다 작거나 같은 경우
-            r = m - 1; 
-            ans = m; 
-        }
+        if (cnt <= N) r = m - 1; // cnt가 N보다 작거나 같은 경우
         else l = m + 1; 
     }
-    cout << ans;
+    cout << l; // l로 최종 값 수렴
     return 0;
 }
