@@ -1,4 +1,4 @@
-// 풀이 시간: 
+// 풀이 시간: 6m18s62
 #include <iostream>
 #include <vector>
 #include <algorithm>
