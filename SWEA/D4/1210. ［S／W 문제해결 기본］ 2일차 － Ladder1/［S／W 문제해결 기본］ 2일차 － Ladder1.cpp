@@ -1,3 +1,5 @@
+// 풀이 시간: 1h40m40s42
+// 참고 자료: https://algosu.tistory.com/31
 #include <iostream>
 #define MAX 100
 using namespace std;
