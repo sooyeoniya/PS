@@ -1,3 +1,4 @@
+// 풀이 시간: 35m24s
 #include <iostream>
 #include <vector>
 #include <queue>
