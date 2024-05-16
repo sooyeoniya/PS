@@ -10,15 +10,13 @@ int deadlock(int c) {
 	bool check = false; // 교착 상태 아님
 	for (int i = 0; i < MAX; ++i) {
 		cur = arr[i][c];
-		if (prev == 1) {
+		if (prev == 1) { // 이전 값 1
 			if (!check && cur == 2) check = true;
 			if (check && i == MAX - 1) cnt++;
 		}
-		if (prev == 2) {
-			if (check) {
-				if (cur == 1 || i == MAX - 1) { cnt++; check = false; }
-			}
-		}
+		if (prev == 2) // 이전 값 2
+			if (check && (cur == 1 || i == MAX - 1)) 
+				{ cnt++; check = false; }
 		if (cur != 0) prev = cur;
 	}
 	return cnt;
