@@ -1,4 +1,5 @@
-// 풀이 시간: 
+// 풀이 시간: 1h29m09s29
+// 참고 자료: https://hyeo-noo.tistory.com/137
 #include <iostream>
 #include <algorithm>
 #define MAX 100
