@@ -1,4 +1,4 @@
-// 풀이 시간: 20m03s13
+// 풀이 시간: 20m03s13(bfs) + 2m49s50(dfs)
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -25,6 +25,17 @@ void bfs() {
 	}
 }
 
+void dfs(int num) {
+	visited[num] = true;
+	if (num == 99) { ans = 1; return; }
+	for (int i = 0; i < arr[num].size(); ++i) {
+		int next = arr[num][i];
+		if (visited[next]) continue;
+		else dfs(next);
+	}
+	return;
+}
+
 int main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(0); cout.tie(0);
@@ -38,7 +49,8 @@ int main() {
 			int a, b; cin >> a >> b;
 			arr[a].push_back(b);
 		}
-		bfs();
+		//bfs();
+		dfs(0);
 		cout << "#" << caseNum << " " << ans << "\n";
 	}
 	return 0;
