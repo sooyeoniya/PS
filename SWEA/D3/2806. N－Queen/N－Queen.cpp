@@ -21,7 +21,7 @@ void nqueen(int num) {
 		for (int j = 0; j < num; ++j)
 			// 같은 행에 다른 퀸이 있는지 확인
 			if (arr[j] == arr[num] 
-				// 대각선에 다른 퀸이 있는지 확인 (열의 차이 == 행의 차이)
+				// 대각선에 다른 퀸이 있는지 확인 (행의 차이 == 열의 차이)
 				|| abs(arr[j] - arr[num]) == abs(j - num)) {
 				check = false; 
 				break;
