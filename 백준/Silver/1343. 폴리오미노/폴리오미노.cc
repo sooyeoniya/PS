@@ -14,9 +14,7 @@ bool check() {
 		ans += "BB";
 		cnt -= 2;
 	}
-	if (cnt > 0) {
-		return true;
-	}
+	if (cnt > 0) return true;
 	return false;
 }
 
