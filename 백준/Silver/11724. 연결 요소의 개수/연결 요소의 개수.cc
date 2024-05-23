@@ -1,4 +1,4 @@
-// 풀이 시간: 5m36s21
+// 풀이 시간: 5m36s21(dfs) + 1m30s36(bfs)
 // 시간 복잡도: O(NM)
 // 공간 복잡도: O(NM)
 
@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <vector>
+#include <queue>
 using namespace std;
 int N, M, ans = 0; 
 vector<vector<int>> arr;
@@ -21,6 +22,23 @@ void dfs(int idx) {
         if (!visited[next]) dfs(next);
     }
     return;
+}
+
+void bfs(int idx) {
+    queue<int> q;
+    q.push(idx);
+    visited[idx] = true;
+    while (!q.empty()) {
+        int cur = q.front();
+        q.pop();
+        for (int i = 0; i < arr[cur].size(); ++i) {
+            int next = arr[cur][i];
+            if (!visited[next]) { 
+                visited[next] = true;
+                q.push(next); 
+            }
+        }
+    }
 }
 
 int main() {
@@ -36,7 +54,8 @@ int main() {
     }
     for (int i = 1; i <= N; ++i) {
         if (!visited[i]) {
-            dfs(i);
+            // dfs(i);
+            bfs(i);
             ans++;
         }
     }
