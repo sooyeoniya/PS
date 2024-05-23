@@ -1,4 +1,4 @@
-// 풀이 시간: 11m42s82(bfs)
+// 풀이 시간: 11m42s82(bfs) + 1m22s69(dfs)
 // 시간 복잡도: O(N)
 // 공간 복잡도: O(NM) // 최대 시간복잡도
 
@@ -32,6 +32,19 @@ void bfs() {
     }
 }
 
+void dfs(int num) {
+    visited[num] = true;
+    for (int i = 0; i < arr[num].size(); ++i) {
+        int next = arr[num][i];
+        if (!visited[next]) {
+            visited[next] = true;
+            ans++;
+            dfs(next);
+        }
+    }
+    return;
+}
+
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(0); cout.tie(0);
@@ -43,7 +56,8 @@ int main() {
         arr[a].push_back(b);
         arr[b].push_back(a); // 양방향 연결
     }
-    bfs();
+    // bfs();
+    dfs(1);
     cout << ans;
     return 0;
 }
