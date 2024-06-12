@@ -1,0 +1,9 @@
+SELECT A.ID, COALESCE(B.COUNT, 0) AS CHILD_COUNT # B.COUNT 값이 NULL인 경우 0 출력
+FROM ECOLI_DATA A
+LEFT JOIN ( # A.ID 기준으로 출력해야하므로 LEFT JOIN
+    SELECT PARENT_ID, COUNT(*) AS COUNT
+    FROM ECOLI_DATA 
+    GROUP BY PARENT_ID
+) B
+ON A.ID = B.PARENT_ID # A에서 ID와 B에서 계산한 PARENT_ID를 같다고 계산해야 해당 ID에 대한 자식 개체 개수를 같은 튜플에 나열할 수 있음
+ORDER BY ID
