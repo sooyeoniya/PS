@@ -1,4 +1,4 @@
-// 메모리: 2112KB, 시간:	68ms
+// 메모리: 2112KB, 시간: 68ms
 
 #include <iostream>
 #include <queue>
@@ -66,7 +66,7 @@ int main() {
 }
 
 // ===================================================
-// 메모리: 2252KB, 시간:	4ms
+// 메모리: 2252KB, 시간: 4ms
 
 #include <iostream>
 #include <queue>
