@@ -8,7 +8,7 @@ vector<pair<int, pair<int, int>>> arr;
 
 int getParent(int node) {
     if (parent[node] == node) return node;
-    else return getParent(parent[node]);
+    return parent[node] = getParent(parent[node]);
 }
 
 void unionParent(int node1, int node2) {
