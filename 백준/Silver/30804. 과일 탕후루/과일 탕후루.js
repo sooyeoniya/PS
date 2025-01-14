@@ -1,4 +1,4 @@
-// 슬라이딩 윈도우 기법 + 투 포인터
+// 풀이 1) 슬라이딩 윈도우 기법 + 투 포인터
 const inputs = require('fs').readFileSync('/dev/stdin');
 const [n, fruits] = inputs.toString().trim().split('\n');
 const fruitsArr = fruits.split(' ').map(Number);
@@ -27,7 +27,9 @@ for (let high = 0; high < n; ++high) {
 
 console.log(ans);
 
-// 투 포인터
+//////////////////////////////////////////////////////////
+
+// 풀이 2) 투 포인터
 const inputs = require('fs').readFileSync('/dev/stdin');
 const [n, fruits] = inputs.toString().trim().split('\n');
 const fruitsArr = fruits.split(' ').map(Number);
