@@ -14,7 +14,7 @@ function solution() {
   let answer = 0;
   let i = 0;
 
-  while (i < M - 1) {
+  while (i < M - 2) {
     if (S.slice(i, i + 3) === 'IOI') {
       cnt += 1;
       if (cnt >= N) {
