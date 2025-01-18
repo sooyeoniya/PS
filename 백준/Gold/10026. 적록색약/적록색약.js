@@ -32,7 +32,27 @@ const bfs = (x, y, color, visited, grid) => {
       }
     }
   }
-}
+};
+
+const dfs = (x, y, color, visited, grid) => {
+  visited[x][y] = true;
+
+  for (let dir = 0; dir < 4; dir++) {
+    const nx = x + dx[dir];
+    const ny = y + dy[dir];
+
+    if (
+      nx >= 0 &&
+      nx < N &&
+      ny >= 0 &&
+      ny < N &&
+      !visited[nx][ny] &&
+      grid[nx][ny] === color
+    ) {
+      dfs(nx, ny, color, visited, grid);
+    }
+  }
+};
 
 const countRegions = (grid, isColorBlind) => {
   const visited = Array.from({ length: N }, () => Array(N).fill(false));
@@ -46,9 +66,11 @@ const countRegions = (grid, isColorBlind) => {
 
         // 적록색약이면 R과 G 동일하게 처리
         if (isColorBlind && (color === 'R' || color === 'G')) {
-          bfs(x, y, 'R', visited, grid.map((row) => row.map((el) => el === 'G' ? 'R' : el)));
+          dfs(x, y, 'R', visited, grid.map((row) => row.map((el) => el === 'G' ? 'R' : el)));
+          // bfs(x, y, 'R', visited, grid.map((row) => row.map((el) => el === 'G' ? 'R' : el)));
         } else {
-          bfs(x, y, color, visited, grid);
+          dfs(x, y, color, visited, grid);
+          // bfs(x, y, color, visited, grid);
         }
       }
     }
