@@ -1,11 +1,35 @@
 const fs = require("fs");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
-const input = fs
+const inputs = fs
   .readFileSync(filePath)
   .toString()
   .trim()
   .split("\n")
   .map((el) => el.trim());
+
+function solution(inputs) {
+  const N = +inputs[0];
+  const A = inputs[1].split(" ").map((el) => +el);
+  const dp = new Array(N).fill(0);
+
+  for (let i = 0; i < N; i++) {
+    let count = 0;
+
+    for (let j = 0; j < i; j++) {
+      if (A[i] > A[j] && dp[j] > count) {
+        count = dp[j];
+      }
+    }
+
+    dp[i] = ++count;
+  }
+
+  console.log(Math.max(...dp));
+}
+
+solution(inputs);
+
+/* ========================================================================= */
 
 function binarySearch(list, left, right, value) {
   while (left < right) {
@@ -23,9 +47,9 @@ function binarySearch(list, left, right, value) {
   return right;
 }
 
-function solution() {
-  const N = +input[0];
-  const A = input[1].split(" ").map((el) => +el);
+function solution2(inputs) {
+  const N = +inputs[0];
+  const A = inputs[1].split(" ").map((el) => +el);
 
   const arr = [];
   arr.push(A[0]);
@@ -42,4 +66,4 @@ function solution() {
   console.log(arr.length);
 }
 
-solution(input);
+solution2(inputs);
