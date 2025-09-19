@@ -1,4 +1,4 @@
-# Program Solving
+# Problem Solving
 This is a auto push repository for Baekjoon Online Judge, Programmers and SW Expert Academy.  
 
 
