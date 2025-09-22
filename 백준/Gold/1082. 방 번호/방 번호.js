@@ -44,14 +44,12 @@ if (result === "" || result === "0" || result.startsWith("0")) {
   // 숫자 0 제외하고 나머지 1 ~ (N - 1) 순회
   for (let i = 1; i < N; i++) {
     if (P[i] <= M) {
-      if (dp[M - P[i]] !== "" || M - P[i] === 0) {
-        const candidate = i.toString() + dp[M - P[i]]; // 순서 중요!
-        if (
-          candidate.length > maxNumber.length ||
-          (candidate.length === maxNumber.length && candidate > maxNumber)
-        ) {
-          maxNumber = candidate;
-        }
+      const candidate = i.toString() + dp[M - P[i]]; // 순서 중요!
+      if (
+        candidate.length > maxNumber.length ||
+        (candidate.length === maxNumber.length && candidate > maxNumber)
+      ) {
+        maxNumber = candidate;
       }
     }
   }
