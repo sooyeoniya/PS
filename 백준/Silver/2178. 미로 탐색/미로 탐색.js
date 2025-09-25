@@ -29,8 +29,8 @@ class Queue {
     this.tail = 0;
   }
 
-  enqueue(x, y) {
-    this.list.push({ x, y });
+  enqueue(x, y, dist) {
+    this.list.push({ x, y, dist });
     this.tail++;
   }
 
@@ -47,20 +47,13 @@ class Queue {
 
 function bfs(x, y) {
   const queue = new Queue();
-  queue.enqueue(x, y);
+  queue.enqueue(x, y, 1);
   visited[x][y] = true;
 
-  const dist = Array.from({ length: N }, () =>
-    Array.from({ length: M }, () => 0)
-  );
-  dist[x][y] = 1;
-
   while (!queue.isEmpty()) {
-    const { x: curX, y: curY } = queue.dequeue();
+    const { x: curX, y: curY, dist: curDist } = queue.dequeue();
 
-    if (curX === N - 1 && curY === M - 1) {
-      return dist[curX][curY];
-    }
+    if (curX === N - 1 && curY === M - 1) return curDist;
 
     for (let i = 0; i < 4; i++) {
       const nextX = curX + distance[i][0];
@@ -72,8 +65,7 @@ function bfs(x, y) {
       if (miro[nextX][nextY] === 0) continue;
 
       visited[nextX][nextY] = true;
-      dist[nextX][nextY] = dist[curX][curY] + 1;
-      queue.enqueue(nextX, nextY);
+      queue.enqueue(nextX, nextY, curDist + 1);
     }
   }
 
