@@ -11,38 +11,37 @@ const N = +input[0];
 const P = input[1].split(" ").map(Number);
 const S = input[2].split(" ").map(Number);
 
-let card = Array.from({ length: N }, (_, i) => i % 3);
-let temp = new Array(N);
+let card = Array.from({ length: N }, (_, i) => i);
+const original = [...card];
 let count = 0;
 
-while (true) {
-  let isMatched = true;
+function isGoal() {
   for (let i = 0; i < N; i++) {
-    if (card[i] !== P[i]) {
-      isMatched = false;
-      break;
-    }
+    if (P[card[i]] !== i % 3) return false;
   }
+  return true;
+}
 
-  if (!isMatched) {
-    for (let i = 0; i < N; i++) {
-      temp[i] = card[S[i]];
-    }
-    card = [...temp];
-    count++;
-  } else {
+if (isGoal()) {
+  console.log(0);
+  return;
+}
+
+while (true) {
+  count++;
+
+  const newCard = Array(N);
+  for (let i = 0; i < N; i++) {
+    newCard[S[i]] = card[i];
+  }
+  card = newCard;
+
+  if (isGoal()) {
     console.log(count);
     break;
   }
 
-  let infinity = true;
-  for (let i = 0; i < N; i++) {
-    if (card[i] !== i % 3) {
-      infinity = false;
-      break;
-    }
-  }
-  if (infinity) {
+  if (card.every((v, i) => v === original[i])) {
     console.log(-1);
     break;
   }
