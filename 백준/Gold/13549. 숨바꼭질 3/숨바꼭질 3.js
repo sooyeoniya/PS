@@ -1,24 +1,33 @@
-const [subin, sister] = require('fs').readFileSync('/dev/stdin').toString().trim().split(' ').map(val => +val);
-const visited = Array.from({ length: 100001 }, () => false);
+const fs = require("fs");
+const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
+const input = fs
+  .readFileSync(filePath)
+  .toString()
+  .trim()
+  .split("\n")
+  .map((el) => el.trim());
 
-const moveSubin = N => {
-  const queue = [[N, 0]];
+const [N, K] = input[0].split(" ").map(Number);
+
+function bfs() {
+  const visited = Array(100_001).fill(false);
+  const q = [[N, 0]];
   visited[N] = true;
 
-  while (queue.length) {
-    const [current, time] = queue.shift();
+  while (q.length) {
+    const [pos, time] = q.shift();
 
-    if (current === sister) return time;
-	
-    [current - 1, current + 1, current * 2].forEach(move => {
-      if (visited[move] || move < 0 || move > 100001) return;
+    if (pos === K) return time;
 
-      visited[move] = true;
+    for (let next of [pos * 2, pos - 1, pos + 1]) {
+      if (next < 0 || next > 100_000 || visited[next]) continue;
 
-      if (move !== current * 2) queue.push([move, time + 1]);
-      else queue.unshift([move, time]);
-    });
+      if (next === pos * 2) q.unshift([next, time]);
+      else q.push([next, time + 1]);
+
+      visited[next] = true;
+    }
   }
-};
+}
 
-console.log(moveSubin(subin));
+console.log(bfs());
