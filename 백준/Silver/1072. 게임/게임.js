@@ -15,7 +15,7 @@ let right = 1_000_000_000;
 let count = Infinity;
 
 while (left <= right) {
-  const mid = parseInt((left + right) / 2);
+  const mid = Math.floor((left + right) / 2);
   const newZ = Math.floor((100 * (Y + mid)) / (X + mid));
 
   if (newZ !== Z) {
