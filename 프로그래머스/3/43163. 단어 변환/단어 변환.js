@@ -1,42 +1,31 @@
-let answer = Infinity;
-let targetWord = "";
-let wordsArr;
-
+var answer = 0;
 function solution(begin, target, words) {
-    targetWord = target;
-    wordsArr = words;
-
-    const visited = Array(begin.length).fill(false);
-    dfs(begin, visited);
-    
-    if (answer !== Infinity) return answer;
-    return 0;
+    const visited = Array(words.length).fill(false);
+    reculsive(begin, target, words, visited);
+    return answer;
 }
 
-function dfs(word, visited, step = 0) {
-    if (word === targetWord) {
-        answer = Math.min(answer, step);
+function reculsive(curWord, target, words, visited, count = 0) {
+    if (curWord === target) {
+        answer = count;
         return;
     }
 
-    wordsArr.forEach((nextWord, nextWordIndex) => {
-        if (visited[nextWordIndex]) return;
-        visited[nextWordIndex] = true;
-        if (oneMatch(word, nextWord)) dfs(nextWord, visited, step + 1);
-        visited[nextWordIndex] = false;
-    });
-    
-    return;
+    for (let i = 0; i < words.length; i++) {
+        if (visited[i]) continue;
+        if (!isOneLetterDifferent(words[i], curWord)) continue;
+        visited[i] = true;
+        reculsive(words[i], target, words, visited, count + 1);
+        visited[i] = false;
+    }
 }
 
-function oneMatch(word1, word2) {
-    let diff = 0;
+function isOneLetterDifferent(word1, word2) {
+    let count = 0;
     for (let i = 0; i < word1.length; i++) {
-        if (word1[i] !== word2[i]) {
-            diff += 1;
-        }
+       if (word1[i] !== word2[i]) count++;
     }
-
-    if (diff === 1) return true;
+    
+    if (count === 1) return true;
     return false;
 }
